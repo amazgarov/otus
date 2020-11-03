@@ -1,0 +1,15 @@
+{
+	"configurations": [
+		{
+			"name": "Отладка",
+			"type": "cppvsdbg",
+			"request": "launch",
+			"program": "allocator.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${workspaceFolder}/02/build/debug",
+			"environment": [],
+			"externalConsole": false
+		}
+	]
+}
