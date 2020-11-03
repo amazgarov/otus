@@ -1,0 +1,26 @@
+language: cpp
+before_script:
+- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+- sudo apt-get update -qq
+before_install:
+# C++17
+- sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+# Install dependencies
+install: 
+# C++17
+- sudo apt-get install -qq g++-6
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+script:
+- envsubst < bintray-preconf.json > bintray-conf.json
+- cd 02
+- cmake .
+- cmake --build .
+- cmake --build . --target package
+- cd ../
+deploy:
+  provider: bintray
+  file: "./bintray-conf.json"
+  user: amazgarov
+  key: $BINTRAY_API_KEY
+  skip_cleanup: true
