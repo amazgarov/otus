@@ -8,6 +8,9 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=C:\Projects\vcpkg-master\scripts\buildsystems\vc
 :: build
 cmake --build .
 
+:: test
+cmake --build . --target run_tests
+
 :: run
 cd debug
 helloworld_cli.exe
