@@ -14,5 +14,5 @@ deploy:
   provider: bintray
   file: "./descriptor.json"
   user: amazgarov
-  key: 96c46840b6290a5002f80f98f46addadba463bc4
+  key: $BINTRAY_API_KEY
   skip_cleanup: true
