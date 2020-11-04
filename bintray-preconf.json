@@ -18,8 +18,8 @@
 	},
 	"files": [
 		{
-			"includePattern": "01_1/bin/helloworld_0.0.$TRAVIS_BUILD_NUMBER.deb",
-			"uploadPattern": "/helloworld_0.0.$TRAVIS_BUILD_NUMBER.deb",
+			"includePattern": "01_1/(.*\.deb)",
+			"uploadPattern": "$1",
 			"matrixParams": {
 				"deb_distribution": "vivid",
 				"deb_component": "main",
