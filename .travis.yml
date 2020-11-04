@@ -4,6 +4,7 @@ before_script:
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 script:
+- envsubst < bintray-preconf.json > bintray-conf.json
 - cd 01_1
 - cmake .
 - cmake --build .
@@ -12,7 +13,7 @@ script:
 - cd ../
 deploy:
   provider: bintray
-  file: "./descriptor.json"
+  file: "./bintray-conf.json"
   user: amazgarov
   key: $BINTRAY_API_KEY
   skip_cleanup: true
