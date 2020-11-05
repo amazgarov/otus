@@ -6,7 +6,7 @@ find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
 configure_file(version.h.in version.h)
 
-add_executable(helloworld_cli main.cpp)
+add_executable(helloworld main.cpp)
 add_library(helloworld lib.cpp)
 add_executable(test_version test_version.cpp)
 
