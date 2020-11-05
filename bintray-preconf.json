@@ -22,7 +22,7 @@
 			"includePattern": "01_1/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
 			"uploadPattern": "helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
 			"matrixParams": {
-				"deb_distribution": "vivid",
+				"deb_distribution": "trusty",
 				"deb_component": "main",
 				"deb_architecture": "amd64",
 				"override": 1
