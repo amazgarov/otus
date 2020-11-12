@@ -1,19 +1,10 @@
 language: cpp
 before_script:
-- sudo apt-get install libboost-test-dev -y
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
 script:
-- envsubst < bintray-preconf.json > bintray-conf.json
-- cd 01_1
+- cd 01_2
 - cmake .
 - cmake --build .
 - cmake --build . --target test
-- cmake --build . --target package
 - cd ../
-deploy:
-  provider: bintray
-  file: "./bintray-conf.json"
-  user: amazgarov
-  key: $BINTRAY_API_KEY
-  skip_cleanup: true
