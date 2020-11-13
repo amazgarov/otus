@@ -8,6 +8,7 @@ namespace ip_filter
 
 	struct ip_address
 	{
+		ip_address(byte _a, byte _b, byte _c, byte _d) : a(_a), b(_b), c(_c), d(_d){}
 		ip_address(ip_address_bytes &bytes)
 		{
 			a = bytes[0];
