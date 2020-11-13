@@ -15,9 +15,8 @@ script:
 - cd 01_2
 - cmake .
 - cmake --build .
-# Testing:
-# Standard CMake way
-- cmake --build . --target test
-# By using tests executable
+# Testing by using custom target
+- cmake --build . --target check
+# Testing by using tests executable
 - tests
 - cd ../
