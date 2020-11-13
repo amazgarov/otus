@@ -17,3 +17,9 @@ script:
 - cmake --build .
 - cmake --build . --target check
 - cd ../
+deploy:
+  provider: bintray
+  file: "./bintray-conf.json"
+  user: amazgarov
+  key: $BINTRAY_API_KEY
+  skip_cleanup: true
