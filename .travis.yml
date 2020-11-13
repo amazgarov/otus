@@ -19,5 +19,5 @@ script:
 # Standard CMake way
 - cmake --build . --target test
 # By using tests executable
-- test
+- tests
 - cd ../
