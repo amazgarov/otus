@@ -8,7 +8,7 @@
 #include <io.h>
 #endif
 
-int main(int argc, char const *argv[])
+int main()
 {
 	try
 	{
