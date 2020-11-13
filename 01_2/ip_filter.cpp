@@ -40,7 +40,11 @@ namespace ip_filter
 			return false;
 		for (auto i = 0; i < 4; ++i)
 		{
-			auto x = atoi(components.at(i).c_str());
+			auto &s = components.at(i);
+			auto is_numeric = std::all_of(s.begin(), s.end(), ::isdigit);
+			if (!is_numeric)
+				return false;
+			auto x = atoi(s.c_str());
 			if (x < 0 || x > 255)
 				return false;
 			parsed[i] = x;
@@ -75,7 +79,7 @@ namespace ip_filter
 		ip_address_bytes parsed;
 		for (std::string line; std::getline(std::cin, line);)
 		{
-			std::vector<std::string> v = split(line, '\t');
+			auto v = split(line, '\t');
 			auto components = split(v.at(0), '.');
 			if (ip_address::validate(components, parsed))
 			{
