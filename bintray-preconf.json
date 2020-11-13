@@ -1,9 +1,9 @@
 {
 	"package": {
-		"name": "otus01_1",
+		"name": "otus01_2",
 		"repo": "otus",
 		"subject": "amazgarovinc",
-		"desc": "I was pushed completely automatically",
+		"desc": "IP filter app",
 		"vcs_url": "https://github.com/amazgarov/otus.git",
 		"github_use_tag_release_notes": false,
 		"licenses": [
@@ -19,8 +19,8 @@
 	"files": [
 		{
 			
-			"includePattern": "01_1/helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
-			"uploadPattern": "helloworld-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
+			"includePattern": "01_2/ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
+			"uploadPattern": "ip_filter-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb",
 			"matrixParams": {
 				"deb_distribution": "trusty",
 				"deb_component": "main",
