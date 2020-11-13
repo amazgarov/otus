@@ -1,17 +1,22 @@
 #include "ip_filter.h"
 
 #include <iostream>
+
+#ifdef _WIN32
 #include <stdio.h>
 #include <fcntl.h>
 #include <io.h>
+#endif
 
 int main(int argc, char const *argv[])
 {
 	try
 	{
-		// change stdout from text mode to binary mode to avoid CR+LF line endings
+#ifdef _WIN32
+		// change stdout from text mode to binary mode to avoid CR+LF line endings on windows
 		// https://docs.microsoft.com/ru-ru/cpp/c-runtime-library/reference/setmode?view=msvc-160
-		_setmode( _fileno( stdout ), _O_BINARY );
+		_setmode(_fileno(stdout), _O_BINARY);
+#endif
 		ip_filter::read_and_process();
 	}
 	catch (const std::exception &e)
