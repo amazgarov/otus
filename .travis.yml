@@ -17,6 +17,7 @@ script:
 - cmake .
 - cmake --build .
 - cmake --build . --target check
+- cmake --build . --target package
 - cd ../
 deploy:
   provider: bintray
