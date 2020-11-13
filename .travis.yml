@@ -18,5 +18,8 @@ script:
 # Testing by using custom target
 - cmake --build . --target check
 # Testing by using tests executable
-- tests
+- ls
+- /bin/tests
+- cat ip_filter.tsv | ip_filter | md5sum
+- echo "Expected - 24e7a7b2270daee89c64d3ca5fb3da1a"
 - cd ../
