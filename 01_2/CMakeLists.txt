@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.2)
 
-project(ip_filter VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(ip_filter)
 
 # https://github.com/google/googletest/blob/master/googletest/README.md#incorporating-into-an-existing-cmake-project
 # Download and unpack googletest at configure time
@@ -33,11 +33,11 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-add_executable(tests tests.cpp)
-target_link_libraries(tests gtest_main)
-
 add_executable(ip_filter main.cpp)
 add_library(ip_filter_lib ip_filter.cpp)
+
+add_executable(tests tests.cpp)
+target_link_libraries(tests gtest_main ip_filter_lib)
 
 set_target_properties(ip_filter PROPERTIES
     CXX_STANDARD 14
