@@ -3,7 +3,7 @@ cd build/debug
 :: by using tests executable
 tests
 
-:: starndard way
+:: standard CMake way for Windows
 ::cmake --build . --target RUN_TESTS
 
 :: by using custom target
