@@ -2,9 +2,22 @@ language: cpp
 before_script:
 - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
 - sudo apt-get update -qq
+before_install:
+# C++17
+- sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+- sudo apt-get update -qq
+# Install dependencies
+install: 
+# C++17
+- sudo apt-get install -qq g++-6
+- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 script:
 - cd 01_2
 - cmake .
 - cmake --build .
+# Testing:
+# Standard CMake way
 - cmake --build . --target test
+# By using tests executable
+- test
 - cd ../
