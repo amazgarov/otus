@@ -12,6 +12,7 @@ install:
 - sudo apt-get install -qq g++-6
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 script:
+- envsubst < bintray-preconf.json > bintray-conf.json
 - cd 01_2
 - cmake .
 - cmake --build .
