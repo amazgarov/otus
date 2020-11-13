@@ -88,3 +88,5 @@ include(CPack)
 
 enable_testing()
 add_test(tests tests)
+
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --verbose DEPENDS tests)
