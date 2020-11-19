@@ -33,10 +33,10 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
     include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-add_executable(ip_filter main.cpp)
-add_library(ip_filter_lib ip_filter.cpp)
+add_executable(ip_filter src/main.cpp)
+add_library(ip_filter_lib src/ip_filter.cpp)
 
-add_executable(tests tests.cpp)
+add_executable(tests src/tests.cpp)
 target_link_libraries(tests gtest_main ip_filter_lib)
 
 set_target_properties(ip_filter PROPERTIES
