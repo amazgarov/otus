@@ -1,26 +1,22 @@
+#include <array>
 #include <vector>
 #include <string>
 
 namespace ip_filter
 {
-	typedef unsigned char byte;
-	using ip_address_bytes = byte[4];
+	using ip_address_bytes = std::array<uint8_t, 4>;
 
 	struct ip_address
 	{
-		ip_address(byte _a, byte _b, byte _c, byte _d) : a(_a), b(_b), c(_c), d(_d){}
-		ip_address(ip_address_bytes &bytes)
+		ip_address(const ip_address_bytes &_bytes)
 		{
-			a = bytes[0];
-			b = bytes[1];
-			c = bytes[2];
-			d = bytes[3];
+			bytes = _bytes;
 		}
-		byte a, b, c, d;
 		static bool validate(const std::vector<std::string> &components, ip_address_bytes &parsed);
-		bool filter(byte first_byte);
-		bool filter(byte first_byte, byte second_byte);
-		bool filter_any(byte any_byte);
+		bool filter(uint8_t first_byte);
+		bool filter(uint8_t first_byte, uint8_t second_byte);
+		bool filter_any(uint8_t any_byte);
+		ip_address_bytes bytes;
 	};
 
 	void read_and_process();
