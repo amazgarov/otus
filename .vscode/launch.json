@@ -4,13 +4,10 @@
 			"name": "Отладка",
 			"type": "cppvsdbg",
 			"request": "launch",
-			"program": "ip_filter.exe",
-			"args": [
-				"<",
-				"ip_filter.tsv"
-			], // feed file content to stdin
+			"program": "allocator.exe",
+			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}/01_2/build/debug",
+			"cwd": "${workspaceFolder}/02/build/debug",
 			"environment": [],
 			"externalConsole": false
 		}

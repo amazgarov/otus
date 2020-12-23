@@ -9,7 +9,7 @@
 			"command": "build_and_run.cmd",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/01_2"
+				"cwd": "${workspaceFolder}/02"
 			},
 			"presentation": {
 				"reveal": "always"
@@ -22,7 +22,7 @@
 			"command": "build",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/01_2"
+				"cwd": "${workspaceFolder}/02"
 			},
 			"presentation": {
 				"reveal": "always"
@@ -35,7 +35,7 @@
 			"command": "gen",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/01_2"
+				"cwd": "${workspaceFolder}/02"
 			},
 			"presentation": {
 				"reveal": "always"
