@@ -15,6 +15,14 @@ int fact(int x)
 
 int main()
 {
+	std::vector<int, custom_allocator<int, 10>> vec;
+	std::cout << "Adding elements\n";
+	for(int i = 0; i<10; ++i)
+		vec.push_back(i);
+
+	std::cout << "RETURN 0" << std::endl;
+	return 0;
+
 	// 1. создание экземпляра map<int, int>
 	std::map<int, int> m;
 

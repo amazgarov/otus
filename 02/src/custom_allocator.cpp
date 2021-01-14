@@ -1,53 +1,73 @@
-template <typename T, int N>
+template <typename T, std::size_t N>
 custom_allocator<T, N>::custom_allocator()
 {
-	std::cout << "I can allocate up to " << N << " elements total.\n";
+	preallocate_size = N;
+	data = nullptr;
+	used_size = 0;
+	std::cout << "CONSTRUCTOR" << __FUNCSIG__ << "\n";
 }
 
-template <typename T, int N>
-template <typename U>
-custom_allocator<T, N>::custom_allocator(const custom_allocator<U, N> &)
+template <typename T, std::size_t N>
+custom_allocator<T, N>::~custom_allocator()
 {
-	std::cout << "This is a copy constructor" << __FUNCSIG__ << "\n";
+	std::cout << "DESTRUCTOR" << __FUNCSIG__ << "\n";
 }
 
-template <typename T, int N>
+template <typename T, std::size_t N>
+template <typename U>
+custom_allocator<T, N>::custom_allocator(const custom_allocator<U, N> &) : custom_allocator()
+{
+}
+
+template <typename T, std::size_t N>
 T *custom_allocator<T, N>::allocate(std::size_t n)
 {
-	// TODO use N here
-	auto p = std::malloc(n * sizeof(T));
-	if (!p)
+	// allocate reserved size on first call
+	if (data == nullptr)
+	{
+		data = reinterpret_cast<T *>(std::malloc(preallocate_size * sizeof(T)));
+		std::cout << "PREALLOCATED AT " << data << " : " << __FUNCSIG__ << std::endl;
+	}
+	if (used_size + n > preallocate_size)
+	{
 		throw std::bad_alloc();
-	return reinterpret_cast<T *>(p);
+	}
+	auto p = data + used_size;
+	std::cout << "ALLOCATED AT " << p << " : " << __FUNCSIG__ << std::endl;
+	used_size += n;
+	return p;
 }
 
-template <typename T, int N>
+template <typename T, std::size_t N>
 void custom_allocator<T, N>::deallocate(T *p, std::size_t n)
 {
-	std::free(p);
+	std::cout << "DEALLOCATE AT " << p << " : " << __FUNCSIG__ << "\n";
+	//std::free(p);
 }
 
-template <class T, class U, int N>
+template <class T, class U, std::size_t N>
 constexpr bool operator==(const custom_allocator<T, N> &, const custom_allocator<U, N> &) noexcept
 {
 	return false;
 }
 
-template <class T, class U, int N>
+template <class T, class U, std::size_t N>
 constexpr bool operator!=(const custom_allocator<T, N> &, const custom_allocator<U, N> &) noexcept
 {
 	return true;
 }
 
-// template <typename T>
-// template <typename U, typename... Args>
-// void custom_allocator<T>::construct(U *p, Args &&... args)
-// {
-// 	new (p) U(std::forward<Args>(args)...);
-// }
+template <typename T, std::size_t N>
+template <typename U, typename... Args>
+void custom_allocator<T, N>::construct(U *p, Args &&... args)
+{
+	std::cout << "Construct " << __FUNCSIG__ << "\n";
+	new (p) U(std::forward<Args>(args)...);
+}
 
-// template <typename T>
-// void custom_allocator<T>::destroy(T *p)
-// {
-// 	p->~T();
-// }
+template <typename T, std::size_t N>
+void custom_allocator<T, N>::destroy(T *p)
+{
+	std::cout << "Destroy " << __FUNCSIG__ << "\n";
+	p->~T();
+}
