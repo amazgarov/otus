@@ -1,7 +1,7 @@
 #include <map>
 #include <vector>
 #include <iostream>
-#include <memory>
+//#include <memory>
 
 #include "custom_allocator.h"
 
@@ -15,12 +15,13 @@ int fact(int x)
 
 int main()
 {
-	std::vector<int, custom_allocator<int, 10>> vec;
+	freopen("output.txt", "w", stdout);
+	std::vector<int, custom_allocator<int, 40>> vec;
 	std::cout << "Adding elements\n";
-	for(int i = 0; i<10; ++i)
+	for(int i = 0; i<3; ++i)
 		vec.push_back(i);
 
-	std::cout << "RETURN 0" << std::endl;
+	std::cout << "\n\t<<< RETURN 0 >>>\n" << std::endl;
 	return 0;
 
 	// 1. создание экземпляра map<int, int>
