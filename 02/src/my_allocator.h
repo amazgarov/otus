@@ -43,13 +43,11 @@ public:
 		used_size += n;
 		return p;
 	}
-#pragma warning(push)
-#pragma warning(disable : 4100)
-	void deallocate(T *p, std::size_t n)
+
+	void deallocate(T *, std::size_t)
 	{
 		// implementing deallocate is not a trivial task, skipped for this educational example
 	}
-#pragma warning(pop)
 
 	template <typename U, typename... Args>
 	void construct(U *p, Args &&...args)
