@@ -36,8 +36,8 @@ public:
 
 	void push_back(const T &value)
 	{
-		node *newNode = allocator.allocate(1);
-		allocator.construct(newNode, node{value, nullptr});
+		node *newNode = allocator_traits::allocate(allocator, 1);
+		allocator_traits::construct(allocator, newNode, node{value, nullptr});
 		tail->next = newNode;
 		tail = newNode;
 	}
