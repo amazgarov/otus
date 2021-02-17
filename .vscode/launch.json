@@ -4,10 +4,10 @@
 			"name": "Отладка",
 			"type": "cppvsdbg",
 			"request": "launch",
-			"program": "allocator.exe",
+			"program": "print_ip.exe",
 			"args": [],
 			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}/02/build/debug",
+			"cwd": "${workspaceFolder}/03/build/debug",
 			"environment": [],
 			"externalConsole": false
 		}

@@ -1,26 +1,42 @@
 language: cpp
-before_script:
-- echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
-- sudo apt-get update -qq
+os: linux
+dist: focal
+compiler: gcc
+
 before_install:
-# C++17
-- sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
-- sudo apt-get update -qq
-# Install dependencies
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
 install: 
-# C++17
-- sudo apt-get install -qq g++-6
-- sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+  - sudo apt-get install -qq g++-10
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90 --slave /usr/bin/g++ g++ /usr/bin/g++-10
+  - sudo apt-get install doxygen graphviz -y
+
+before_script:
+  - echo "deb http://archive.ubuntu.com/ubuntu xenial main universe" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update -qq
+addons:
+  apt:
+    packages:
+      - doxygen
 script:
-- envsubst < bintray-preconf.json > bintray-conf.json
-- cd 02
-- cmake .
-- cmake --build .
-- cmake --build . --target package
-- cd ../
+  - envsubst < bintray-preconf.json > bintray-conf.json
+  - cd 03
+  - cmake .
+  - cmake --build .
+  - cmake --build . --target package
+  - cd ../
+  - envsubst < Doxyfile.in > Doxyfile
+  - doxygen Doxyfile
 deploy:
-  provider: bintray
-  file: "./bintray-conf.json"
-  user: amazgarov
-  key: $BINTRAY_API_KEY
-  skip_cleanup: true
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: ./html
+    keep_history: true
+    on:
+      branch: master
+  - provider: bintray
+    file: "./bintray-conf.json"
+    user: amazgarov
+    key: $BINTRAY_API_KEY
+    skip_cleanup: true

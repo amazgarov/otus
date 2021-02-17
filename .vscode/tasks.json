@@ -9,7 +9,7 @@
 			"command": "build_and_run.cmd",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/02"
+				"cwd": "${workspaceFolder}/03"
 			},
 			"presentation": {
 				"reveal": "always"
@@ -22,7 +22,7 @@
 			"command": "build",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/02"
+				"cwd": "${workspaceFolder}/03"
 			},
 			"presentation": {
 				"reveal": "always"
@@ -32,10 +32,10 @@
 		{
 			"label": "Regenerate",
 			"type": "shell",
-			"command": "gen",
+			"command": "regenerate",
 			"group": "build",
 			"options": {
-				"cwd": "${workspaceFolder}/02"
+				"cwd": "${workspaceFolder}/03"
 			},
 			"presentation": {
 				"reveal": "always"
